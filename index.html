@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topppy</title>
+    <style>
+        *{padding:0;margin:0; font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;}
+        body{background-color: #222}
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color:#099;
+        }
+        a:hover{
+            color:#069;
+        }
+        .header{
+            background-color: #096;
+            color: #000;
+        }
+        .header>h1{
+            font-size: 48px;
+            margin:auto;
+            top:0;bottom: 0;
+            padding:100px ;
+        }
+        .sidebar{
+            width:200px;
+            position: fixed;
+            right:0;
+            top:258px;
+            margin: 50px;
+            background-color: #096;
+        }
+        .sidebar span{
+            display: block;
+            padding:20px 20px;
+        }
+        .sidebar a{
+            display: block;
+            color:#000;
+            padding:10px 20px;
+        }
+        .sidebar a:hover{
+            background-color: #fff;
+            color:#000;
+        }
+        .wrap{
+            margin: 50px 300px 0 50px;
+            
+            background-color: #fff;
+        }
+        .article-item{
+            padding: 20px;
+            border-bottom: 10px solid #222;
+        }
+        .artical-head h1{display: block}
+        .artical-head time{
+            margin-top: -23px;
+            float:right;
+        }
+        .article-item p{padding-top:10px ;} 
+        .article-footer{
+            padding-top: 30px;
+        }
+        .article-footer a{
+            margin-top: -20px;
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <header class="header"><h1>Topppy's Blog</h1></header>
+    <nav class="sidebar">
+        <ul>
+            <li><span >目录</span></li>
+            <li><a href="">111</a></li>
+            <li><a href="">111</a></li>
+            <li><a href=""></a></li>
+            <li><a href="">搭建我的blog</a></li>
+        </ul>
+    </nav>
+    <div class="wrap">
+        <div class="content">
+            <article class="article-item">
+                <header class="artical-head">
+                    <h1>搭建我的blog</h1>
+                    <time>2016.05.06</time>
+                </header>
+                <section>
+                    <p>在github提供的gitpage服务上建立自己的博客</p>
+                    <p>地址为<span><a href="https://topppy.github.io">https://topppy.github.io</a></span></p>
+                </section>
+                <footer class="article-footer">
+                    <a href="">More...</a>
+                </footer>
+            </article>
+            <article class="article-item">
+                <header class="artical-head">
+                    <h1>搭建我的blog</h1>
+                    <time>2016.05.06</time>
+                </header>
+                <section>
+                    <p>在github提供的gitpage服务上建立自己的博客</p>
+                    <p>地址为<span><a href="https://topppy.github.io">https://topppy.github.io</a></span></p>
+                </section>
+                <footer class="article-footer">
+                    <a href="2016.05.06/index.html">More...</a>
+                </footer>
+            </article>
+        </div>
+    </div>    
+</body>
+</html>
