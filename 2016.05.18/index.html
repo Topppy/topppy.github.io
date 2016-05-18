@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搭建自己的博客</title>
+    <style>
+        *{padding:0;margin:0; font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;}
+        body{background-color: #222}
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color:#099;
+        }
+        code{
+            display:none;
+        }
+        a:hover{
+            color:#069;
+        }
+        .header{
+            background-color: #096;
+            color: #fff;
+        }
+        .header>h1{
+            font-size: 48px;
+            margin:auto;
+            top:0;bottom: 0;
+            padding:20px ;
+        }
+        .wrap{
+            margin: 50px 300px 0 50px;
+            background-color: #fff;
+        }
+        .article-item{
+            padding: 20px;
+            border-bottom: 10px solid #222;
+        }
+        .artical-head{
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .artical-head h1{display: block}
+        .artical-head time{
+            margin-top: -23px;
+            float:right;
+        }
+        .article-section h4 {padding:10px 0;}
+        .article-item p{padding-top:10px ;} 
+        .article-footer{
+            padding-top: 30px;
+
+        }
+        .article-footer a{
+            margin-top: -20px;
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <header class="header"><h1>Topppy's Blog</h1></header>
+    <div class="wrap">
+        <div class="content">
+            <article class="article-item">
+                <header class="artical-head">
+                    <h1>Canvas 饼图</h1>
+                    <time>2016.05.18</time>
+                </header>
+                <section class="article-section">
+                    <h4>在Canvas上将数据画成饼图</h4>
+                    <canvas id="cas" height="600" width="600"></canvas>
+                    <p>将这个功能封装成为一个pie对象，只需要将参数对象传递给pie.init(config)函数，就能初始化canvas，然后调用pie.render()函数，饼图就画好啦。
+                        <a href="../scripts/pie.js" download>下载pie.js</a>
+                    </p>
+                    <h4>0.  引入pie.js文件</h4>
+                    <p>最开始需要在你的代码前面引入pie.js文件</p>
+                    <img src="img/1.png" alt="">
+                    <h4>1.  获取canvas元素</h4>
+                    <p>html代码中给你的canvas元素起个ID</p>
+                    <img src="img/0.png" alt="">
+                    <p>首先我们获取要绘制饼图的canvas元素</p>
+                    <img src="img/2.png" alt="">
+                    <code>
+                        var canvas = document.getElementById("cas");
+                    </code>
+                    <h4>2.  设置参数</h4>
+                    <p>然后准备好数据、图例和颜色（内置了9个颜色，数据数量小于9的话，不传颜色参数也可以啦~）</p>
+                    <img src="img/3.png" alt="">
+                    <code>
+                        var data = [10,20,50,100,30,40,70,22];</br>
+                        var legend=["C++","Ruby","Java","JS","Python","R","C","D"];</br>
+                        var colors=["#CCFFFF",'#99CC66','#CCCCFF','#0099CC',"#FF6600",'#996699','#FFFF00',"#FF6666"]
+                    </code>
+                    <p>然后把这些打包在一个对象里</p>
+                    <img src="img/4.png" alt="">
+                    <code>
+                        var config={</br>
+                            canvas:canvas,</br>
+                            series:data,</br>
+                            title:"Coding language",</br>
+                            legend:legend,</br>
+                            tip:{enable:true},</br>
+                            colors:colors</br>
+                        }
+                    </code>
+                    <p><code>tip:{enable:true}</code>提供了鼠标在饼图上移动的是候显示提示框的功能，（不想用的话可以不传这个参数哦~）</p>
+                    <h4>3.  画图</h4>
+                    <p>紧张，激动人心的时候到啦，我们来使用pie的初始化函数</p>
+                    <img src="img/5.png" alt="">
+                    <code>
+                        pie.init(config);
+                    </code>
+                    <p>最后一步，使用pie.render()画图啦</p>
+                    <img src="img/6.png" alt="">
+                    <code>
+                        pie.render();
+                    </code>
+                    <p>好啦，大功告成啦~，一个饼图就画好了。</p>
+                </section>
+                <footer class="article-footer">
+                    <a href="https://topppy.github.io">回到主页</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+    <script src="pie.js"></script>
+    <script>
+        var canvas = document.getElementById("cas");
+        // var ctx = canvas.getContext("2d");
+        var data = [10,20,50,100,30,40,70,22];
+        var legend=["C++","Ruby","Java","JS","Python","R","C","D"];
+        var colors=["#CCFFFF",'#99CC66','#CCCCFF','#0099CC',"#FF6600",'#996699','#FFFF00',"#FF6666"]
+        var config={
+            canvas:canvas,
+            series:data,
+            title:"Coding language",
+            legend:legend,
+            tip:{enable:true},
+            colors:colors
+        }
+        //调用pie的初始化函数
+        pie.init(config);
+        //绘制饼图
+        pie.render();
+    </script>
+</body>
+</html>
