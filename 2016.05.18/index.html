@@ -74,7 +74,7 @@
                         <a href="../scripts/pie.js" download>下载pie.js</a>
                     </p>
                     <h4>0.  引入pie.js文件</h4>
-                    <p>最开始需要在你的代码前面引入pie.js文件</p>
+                    <p>最开始需要在你的代码前面引入pie.js文件，你可以放在head标签里面，也可以放在body底部其他script标签的前面。</p>
                     <img src="img/1.png" alt="">
                     <h4>1.  获取canvas元素</h4>
                     <p>html代码中给你的canvas元素起个ID</p>
@@ -104,7 +104,8 @@
                             colors:colors</br>
                         }
                     </code>
-                    <p><code>tip:{enable:true}</code>提供了鼠标在饼图上移动的是候显示提示框的功能，（不想用的话可以不传这个参数哦~）</p>
+                    <p><pre>tip:{enable:true}</pre>提供了鼠标在饼图上移动的时候显示提示框的功能，（不想用的话可以不传这个参数哦~）</p>
+                    <p><pre>title:"Coding language"</pre>这个参数传入这个图表的标题，格式是字符串。</p>
                     <h4>3.  画图</h4>
                     <p>紧张，激动人心的时候到啦，我们来使用pie的初始化函数</p>
                     <img src="img/5.png" alt="">
