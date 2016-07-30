@@ -1,0 +1,129 @@
+*{padding:0;margin:0; font-family: "monospace","Arial","Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;}
+        body{background-color: #ddd}
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color:#099;
+        }
+        code{
+            display:none;
+        }
+        a:hover{
+            color:#069;
+        }
+        img{
+            max-width: 100%;
+        }
+        .header{
+            background-color: #333;
+            color: #fff;
+        }
+        .header>h1{
+            font-size: 48px;
+            margin:auto;
+            top:0;bottom: 0;
+            padding:100px ;
+        }
+        .wrap{
+            margin: 50px 300px 0 50px;
+            background-color: #fff;
+        }
+        .article-item{
+            padding: 20px;
+            border-bottom: 10px solid #ddd;
+        }
+        .artical-head{
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .artical-head h1{display: block}
+        .artical-head time{
+            margin-top: -23px;
+            float:right;
+        }
+        .article-section h4 {padding:10px 0;}
+        .article-item p{padding-top:10px ;} 
+        .article-footer{
+            padding-top: 30px;
+
+        }
+        .article-footer a{
+            margin-top: -20px;
+            float:right;
+        }
+/*        .sidebar{
+            width:200px;
+            position: absolute;
+            right:0;
+            top:258px;
+            margin: 50px;
+            background-color: #333;
+        }*/
+        .sidebar span{
+            display: block;
+            padding:20px 20px;
+        }
+        .sidebar a{
+            display: block;
+            color:#fff;
+            padding:10px 20px;
+        }
+        .sidebar a:hover{
+            background-color: #fff;
+            color:#000;
+        }
+        @media only screen and (max-width: 768px) {
+            .sidebar{
+                display: none;
+                width:200px;
+                position: fixed;
+                right:0;
+                top:258px;
+                margin: 50px;
+                color:#fff;
+            }
+            .wrap{
+            margin: 50px 50px 0 50px;
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            .sidebar{
+                width:200px;
+                position: absolute;
+                right:0;
+                top:258px;
+                margin: 50px;
+                color:#fff;
+                background-color: #333;
+            }
+            .wrap{
+            margin: 50px 300px 0 50px;
+            }
+        }
+        .sidebar.scroll{
+            position: fixed;
+            top:0px;
+        }
+        .b2Top{
+            display: block;
+            position: fixed;
+             opacity:0;
+            background-image: url(../img/b2top.png) ;
+            background-color: rgba(255,255,255,0.5);
+            width:50px;
+            height: 50px;
+            right:50px;
+            bottom:20px;
+            background-repeat: no-repeat;
+            background-size: 50% 50%;
+            background-position: center;
+        }
+        .b2Top:hover{
+            background-color: rgba(255,255,255,1);
+        }
+        .b2Top.show{
+            opacity:1;
+            transition: opacity 0.5s;
+        }

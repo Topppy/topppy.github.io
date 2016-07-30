@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Wordpress 安装和使用</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css">
+</head>
+<body>
+    <header class="header"><h1>Topppy's Blog</h1></header>
+    <nav class="sidebar ">
+        <ul>
+            <li><span >目录</span></li>
+            <li><a href="#step1">1. 首先安装XAMPP</a></li>
+            <li><a href="#step2">2.为wordpress安装数据库</a></li>
+            <li><a href="#step3">3.下载wordpress</a></li>
+            <li><a href="#step4">4.修改配置文件</a></li>
+            <li><a href="#step5">5.登陆WordPress</a></li>
+            <li><a href="#step6">6.更换主题</a></li>
+            <li><a href="#step7">7.图片无法上传及大小限制问题</a></li>
+        </ul>
+    </nav>
+    <a class='b2Top'></a>
+    <div class="wrap">
+        <div class="content">
+            <article class="article-item">
+                <header class="artical-head">
+                    <h1>Wordpress 安装和使用</h1>
+                    <time>2016.07.30</time>
+                </header>
+                <section class="article-section">
+                    <p>我们可以在本机安装 wordpress，从而能在本地建站，折腾并调试。本文将详细介绍如何在Mac下安装wordpress。</p>
+                    <h4 id='step1'>1. 首先安装XAMPP</h4>
+                    <p>1.1.下载xampp  <a href=" https://sourceforge.net/projects/xampp/files/" >下载地址</a> 双击安装</p>
+                    <p>1.2.在终端中使用下面的命令启动 XAMPP：<br>
+                        <pre class='language-bash'>sudo /Applications/XAMPP/xamppfiles/xampp start</pre> <br>
+                        终端提示输入密码<br>
+                        <pre class='language-bash'>Password:</pre><br>
+                        密码输入后回车<br>
+                        <pre class='language-bash'>Starting XAMPP for Mac OS X 5.6.21-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...ok.
+XAMPP: Starting ProFTPD...ok.
+                        </pre>
+                        启动成功<br>
+                        安装成功之后在浏览器中输入 <pre>http://localhost</pre><br>
+                        <img src="./img/wp-1.png" alt="">
+                    </p>
+                    <h4  id='step2'>2.为wordpress安装数据库</h4>
+                    <p>wordpress自身是不带数据库的，需要我们在XAMPP中创建数据库。在浏览器中输入：http://localhost/phpmyadmin/，进入数据库管理界面。输入数据库名：wordpress_test（可自定义），排序规则选择：utf8_general_ci</p>
+                    <h4  id='step3'>3.下载wordpress</h4>
+                    <p>下载wordpress(最新版本)，然后解压 wordpress至：/Applications/XAMPP/xamppfiles/htdocs/ 下。</p>
+                    <h4  id='step4'>4.修改配置文件</h4>
+                    <p>拷贝 /Applications/XAMPP/xamppfiles/htdocs/wordpress/wp-config-sample.php的内容至 新建的文件/Applications/XAMPP/xamppfiles/htdocs/wordpress/wp-config.php，然后用文本编辑器打开，进行如下三处修改：<br>
+修改数据库名称database_name_here为你的数据库名，<br>
+修改数据库用户名username_here为root <br>
+修改数据库密码为空，就是把password_here删除</p>
+                    <h4  id='step5'>5.登陆WordPress</h4>
+                    <p>.在浏览器中输入：http://localhost/wordpress/，你应该可以看到如下设置页面！
+                    <img src="./img/wp-2.png" alt="">
+                    <br>在这个设置页面设置站点标题，登陆用户名，密码即可。然后就可以看到如下页面！
+                    <img src="./img/wp-3.jpg" alt="">
+                    <br>恭喜，wordpress已经成功安装了.</p>
+                    <h4  id='step6'>6.更换主题及安装失败问题</h4>
+                    <p>有两种方法：1.下载主题包，解压，上传到服务器wp-content/themes目录下，然后进入管理后台，启用新主题即可。2.直接在后台主题管理处，根据需求搜索主题，然后点击安装，即可实现在线安装。</p>
+                    <h5 style="color:red">注意</h5>
+                    <p>在线安装主题、插件有可能会出现失败情况，错误提示是没有权限，解决办法如下：<br>
+                            将wp-content 文件夹的权限改为755，将wp-content/theme和wp-content/plugin 文件夹的权限改为777。如果还是提示同样的错误无法安装主题和插件的话，那就只能将 wp-content 文件夹的权限改为777（下策）。</p>
+                    <h4  id='step7'>7.图片无法上传及大小限制问题</h4>
+                    <p>WordPress管理后台支持图片上传，但是第一次使用时候报错（阿里云下PHP+Apache+nginx环境）<br>无法上传问题-----解决：<br>
+1.uploads文件夹不存在---------新建该文件夹<br>
+2.数据库 wp_options 表的uploads_path 键的值不为wp-contents/uploads-------输入该值 <br>
+3.wp-content 权限改为755 uploads 权限改为777
+<br>
+大小限制2M问题-----解决<br>
+主机的 etc/php5/fpm 目录下php.ini文件修改以下字段的值如下<pre class='language-bash' >upload_max_filesize = 32M 
+post_max_size = 32M 
+max_execution_time = 300 
+</pre>cd 到 /etc/nigix/目录下找到 nginx 的config 文件 修改以下字段的值如下<pre  class='language-bash'>http {
+    #...
+        client_max_body_size 32M;
+    #...
+}</pre>
+然后重启php-fpm 和nginx <pre  class='language-bash' >service nginx restart
+service php5-fpm restart</pre>
+参考链接 <a href="https://easyengine.io/tutorials/php/increase-file-upload-size-limit/">https://easyengine.io/tutorials/php/increase-file-upload-size-limit/</a>
+</p>
+<p>修改主题和给主题添加自定义主题设置页面部分也学到了一些新知识，以后会整理整理分享给大家</p>
+
+
+                </section>
+                <footer class="article-footer">
+                    <a href="https://topppy.github.io">回到主页</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/lib/prism/prism.js"></script>
+    <script>
+    $(function(){
+        var $sidebar = $(".sidebar");
+        var $b2Top = $(".b2Top");
+        var scrollTop;
+        $b2Top.click(function(e){
+            $(window).scrollTop(0);
+        });
+        $(window).scroll(function() {
+            scrollTop = $(window).scrollTop();
+            var bShown = $b2Top.hasClass('show');
+            var sideScrolled = $sidebar.hasClass('scroll');
+            if(scrollTop>258){
+                !bShown&&$b2Top.addClass('show');
+                !sideScrolled &&$sidebar.addClass('scroll');
+            }else if(scrollTop<=258) {
+                bShown&&$b2Top.removeClass('show');
+                sideScrolled &&$sidebar.removeClass('scroll');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
