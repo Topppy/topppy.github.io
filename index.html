@@ -1,82 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Topppy</title>
-    <style>
-        *{padding:0;margin:0; font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;}
-        body{background-color: #ddd}
-        li{
-            list-style: none;
-        }
-        a{
-            text-decoration: none;
-            color:#099;
-        }
-        a:hover{
-            color:#069;
-        }
-        .header{
-            background-color: #333;
-            color: #fff;
-        }
-        .header>h1{
-            font-size: 48px;
-            margin:auto;
-            top:0;bottom: 0;
-            padding:100px ;
-        }
-        .sidebar{
-            width:200px;
-            position: fixed;
-            right:0;
-            top:258px;
-            margin: 50px;
-            background-color: #333;
-            color:#fff;
-        }
-        .sidebar span{
-            display: block;
-            padding:20px 20px;
-        }
-        .sidebar a{
-            display: block;
-            color:#fff;
-            padding:10px 20px;
-        }
-        .sidebar a:hover{
-            background-color: #fff;
-            color:#000;
-        }
-        .wrap{
-            margin: 50px 300px 0 50px;
-            
-            background-color: #fff;
-        }
-        .article-item{
-            padding: 20px;
-            border-bottom: 10px solid #ddd;
-        }
-        .artical-head h1{display: block}
-        .artical-head time{
-            margin-top: -23px;
-            float:right;
-        }
-        .article-item p{padding-top:10px ;} 
-        .article-footer{
-            padding-top: 30px;
-        }
-        .article-footer a{
-            margin-top: -20px;
-            float:right;
-        }
-    </style>
+    <link rel="stylesheet" href="static/css/base.css">
+    <!--<style>-->
+        <!--*{padding:0;margin:0; font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;}-->
+        <!--body{background-color: #ddd}-->
+        <!--li{-->
+            <!--list-style: none;-->
+        <!--}-->
+        <!--a{-->
+            <!--text-decoration: none;-->
+            <!--color:#222-->
+        <!--}-->
+        <!--a:hover{-->
+            <!--color:#333;-->
+        <!--}-->
+        <!--.header{-->
+            <!--background-color: #333;-->
+            <!--color: #fff;-->
+        <!--}-->
+        <!--.header>h1{-->
+            <!--font-size: 48px;-->
+            <!--margin:auto;-->
+            <!--top:0;bottom: 0;-->
+            <!--padding:100px ;-->
+        <!--}-->
+        <!--.sidebar{-->
+            <!--width:200px;-->
+            <!--position: fixed;-->
+            <!--right:0;-->
+            <!--top:258px;-->
+            <!--margin: 50px;-->
+            <!--background-color: #333;-->
+            <!--color:#fff;-->
+        <!--}-->
+        <!--.sidebar span{-->
+            <!--display: block;-->
+            <!--padding:20px 20px;-->
+        <!--}-->
+        <!--.sidebar a{-->
+            <!--display: block;-->
+            <!--color:#fff;-->
+            <!--padding:10px 20px;-->
+        <!--}-->
+        <!--.sidebar a:hover{-->
+            <!--background-color: #fff;-->
+            <!--color:#000;-->
+        <!--}-->
+        <!--.wrap{-->
+            <!--margin: 50px 300px 0 50px;-->
+            <!---->
+            <!--background-color: #fff;-->
+        <!--}-->
+        <!--.article-item{-->
+            <!--padding: 20px;-->
+            <!--border-bottom: 10px solid #ddd;-->
+        <!--}-->
+        <!--.artical-head h1{display: block}-->
+        <!--.artical-head time{-->
+            <!--margin-top: -23px;-->
+            <!--float:right;-->
+        <!--}-->
+        <!--.article-item p{padding-top:10px ;} -->
+        <!--.article-footer{-->
+            <!--padding-top: 30px;-->
+        <!--}-->
+        <!--.article-footer a{-->
+            <!--margin-top: -20px;-->
+            <!--float:right;-->
+        <!--}-->
+    <!--</style>-->
 </head>
 <body>
     <header class="header"><h1>Topppy's Blog</h1></header>
     <nav class="sidebar">
         <ul>
-            <li><span >目录</span></li>
+            <li><span >最新文章</span></li>
+            <li><a href="2016.09.01/index.html">螺旋矩阵算法js实现</a></li>
             <li><a href="2016.08.28/index.html">GIT状态图</a></li>
             <li><a href="2016.07.30/index.html">Wordpress 安装和使用</a></li>
             <li><a href="2016.05.18/index.html">Canvas饼图</a></li>
@@ -85,8 +89,20 @@
         </ul>
     </nav>
     <div class="wrap">
-        <div class="content">
-            <article class="article-item">
+        <a class="content">
+            <a href="2016.09.01/index.html"><article class="article-item">
+                <header class="artical-head">
+                    <h1>螺旋矩阵算法js实现</h1>
+                    <time>2016.09.01</time>
+                </header>
+                <section>
+                    <p>腾讯的一道笔试题，自己用js来实现下。</p>
+                </section>
+                <footer class="article-footer">
+                    More...
+                </footer>
+            </article></a>
+            <a href="2016.08.28/index.html"><article class="article-item">
                 <header class="artical-head">
                     <h1>GIT状态图</h1>
                     <time>2016.08.28</time>
@@ -95,10 +111,10 @@
                     <p>使用git，也有一段时间了，但是对git集中状态没有比较清晰的一个认识，尤其是涉及到代码回滚，直到最近阅读了git的官方文档（文档是个好东西，你值得拥有），画了一张图来帮助自己理顺git的套路。</p>
                 </section>
                 <footer class="article-footer">
-                    <a href="2016.08.28/index.html">More...</a>
+                    More...
                 </footer>
-            </article>
-            <article class="article-item">
+            </article></a>
+            <a href="2016.07.30/index.html"><article class="article-item">
                 <header class="artical-head">
                     <h1>Wordpress 安装和使用</h1>
                     <time>2016.07.30</time>
@@ -108,10 +124,10 @@
                     <p>解决图片无法上传及大小限制问题</p>
                 </section>
                 <footer class="article-footer">
-                    <a href="2016.07.30/index.html">More...</a>
+                    More...
                 </footer>
-            </article>
-            <article class="article-item">
+            </article></a>
+            <a href="2016.05.18/index.html"><article class="article-item">
                 <header class="artical-head">
                     <h1>Canvas 饼图</h1>
                     <time>2016.05.18</time>
@@ -119,13 +135,12 @@
                 <section>
                     <p>在Canvas上将数据画成饼图</p>
                     <p>将这个功能封装成为一个pie对象，只需要将参数对象传递给pie.init(config)函数，就能初始化canvas，然后调用pie.render()函数，饼图就画好啦。
-                        <a href="../scripts/pie.js" download>下载pie.js</a>
                     </p>
                 </section>
                 <footer class="article-footer">
-                    <a href="2016.05.18/index.html">More...</a>
+                    More...
                 </footer>
-            </article>
+            </article></a>
             <article class="article-item">
                 <header class="artical-head">
                     <h1>Canvvas动态星空</h1>
@@ -152,6 +167,9 @@
                 </footer>
             </article>
         </div>
-    </div>    
+    </div>
+    <a class='b2Top'></a>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/base.js"></script>
 </body>
 </html>

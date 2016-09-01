@@ -22,7 +22,7 @@
                 <h4>前言</h4>
                 <p>使用git，也有一段时间了，但是对git集中状态没有比较清晰的一个认识，尤其是涉及到代码回滚，直到最近阅读了git的官方文档（文档是个好东西，你值得拥有），画了一张图来帮助自己理顺git的套路。</p>
                 <p>一言不合就上图</p>
-                <img src="./img/git.svg" alt="git" height="100%" width="100%">
+                <img src="./img/git.svg" alt="git"  max-width="600px" >
                 <h4>git 的三种状态</h4>
                 <p>git在本地，有三个状态，工作区，暂存区，本地仓库。事实上，当你开始对本地的仓库的代码下手修改的时候，你的修改都是存在工作区的，这些修改对git不可见，当然，我们会有一些修改时不想存到git上的，有些觉得修改的差不多是可以提交到git上的，那么就将你希望保存的修改 git add 到暂存区，作为一个快照保存下来，你可以多次add 自己目前的修改。当你所有的想要提交的修改都准备好了的时候，就可以使用 git commit 将暂存区中的修改提交到本地仓库，这就已经被git所记录了，有他自己的commitID，可以使用 git log 来查看，最后就是讲本地修改push到远端仓库</p>
                 <h4>git 的代码回滚</h4>
@@ -37,28 +37,8 @@
     </div>
 </div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/base.js"></script>
 <script type="text/javascript" src="../static/lib/prism/prism.js"></script>
-<script>
-    $(function(){
-        var $sidebar = $(".sidebar");
-        var $b2Top = $(".b2Top");
-        var scrollTop;
-        $b2Top.click(function(e){
-            $(window).scrollTop(0);
-        });
-        $(window).scroll(function() {
-            scrollTop = $(window).scrollTop();
-            var bShown = $b2Top.hasClass('show');
-            var sideScrolled = $sidebar.hasClass('scroll');
-            if(scrollTop>258){
-                !bShown&&$b2Top.addClass('show');
-                !sideScrolled &&$sidebar.addClass('scroll');
-            }else if(scrollTop<=258) {
-                bShown&&$b2Top.removeClass('show');
-                sideScrolled &&$sidebar.removeClass('scroll');
-            }
-        });
-    });
-</script>
+
 </body>
 </html>

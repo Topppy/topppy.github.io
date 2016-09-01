@@ -1,4 +1,4 @@
-/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+coffeescript+css-extras+git+http+json+less+sass&plugins=line-highlight+line-numbers+file-highlight+highlight-keywords */
+/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+bash+coffeescript+git+less+markdown+python+sass&plugins=line-highlight+line-numbers+file-highlight+highlight-keywords */
 /**
  * okaidia theme for JavaScript, CSS and HTML
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
@@ -170,10 +170,12 @@ pre.line-numbers {
 	position: relative;
 	padding-left: 3.8em;
 	counter-reset: linenumber;
+	font-family:simsun,sans-serif;
 }
 
 pre.line-numbers > code {
 	position: relative;
+	font-family:simsun,sans-serif;
 }
 
 .line-numbers .line-numbers-rows {
