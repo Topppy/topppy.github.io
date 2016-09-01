@@ -1,5 +1,5 @@
 *{padding:0;margin:0; font-family: "monospace","Arial","Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif; }
-        body{background-color: #ddd}
+        body{background-color: #f0f0f0}
         li{
             list-style: none;
         }
@@ -8,35 +8,45 @@
             color:#222;
         }
         a:hover{
-            color:#333;
+            color:#33454d;
         }
         img{
             max-width: 100%;
         }
         .header{
-            background-color: #333;
+            background-color: #33454d;
             color: #fff;
         }
         .header>h1{
             font-size: 48px;
             margin:auto;
             top:0;bottom: 0;
-            padding:100px ;
+            padding:50px ;
         }
         .wrap{
             margin: 50px 300px 0 50px;
+
+        }
+        .article{
+            display: block;
+            margin-bottom: 10px;
             background-color: #fff;
+            overflow: hidden;
+        }
+        .article:hover{
+            box-shadow: 1px 1px 6px 0px #888;
         }
         .article-item{
             padding: 20px;
-            border-bottom: 10px solid #ddd;
         }
-        .artical-head{
+        .article-item:hover{
+        }
+        .article-head{
             padding-bottom: 20px;
             border-bottom: 1px solid #ccc;
         }
-        .artical-head h1{display: block}
-        .artical-head time{
+        .article-head h1{display: block}
+        .article-head time{
             margin-top: -23px;
             float:right;
         }
@@ -56,34 +66,54 @@
             right:0;
             top:258px;
             margin: 50px;
-            background-color: #333;
+            background-color: #33454d;
         }*/
+        .sidebar{
+            box-shadow: 1px 1px 6px 0px #888;
+        }
         .sidebar span{
             display: block;
             padding:20px 20px;
         }
         .sidebar a{
             display: block;
+            position: relative;
             color:#fff;
             padding:10px 20px;
         }
+        .sidebar a:after{
+            position: absolute;
+            box-sizing: border-box;
+            top:0;
+            left:0;
+            height:100%;
+            width:0;
+            overflow: hidden;
+            word-break:keep-all;
+            white-space:nowrap;
+            padding: 10px 0px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            content: attr(data-title);;
+            background-color: #e87e6f;
+            -webkit-transition: width 0.1s,padding-left 0.1s;
+            -moz-transition: width 0.1s,padding-left 0.1s;
+            -ms-transition: width 0.1s,padding-left 0.1s;
+            -o-transition: width 0.1s,padding-left 0.1s;
+            transition: width 0.1s,padding-left 0.1s;
+        }
         .sidebar a:hover{
-            background-color: #fff;
-            color:#000;
-            border-left: 3px solid #ff9900;
+        }
+        .sidebar a:hover:after{
+            padding: 10px 30px;
+            width:100%;
         }
         @media only screen and (max-width: 768px) {
-            .sidebar{
-                display: none;
-                width:200px;
-                position: fixed;
-                right:0;
-                top:258px;
-                margin: 50px;
-                color:#fff;
-            }
             .wrap{
             margin: 50px 50px 0 50px;
+            }
+            .b2Top,.sidebar{
+                display: none;
             }
         }
         @media only screen and (min-width: 768px) {
@@ -94,7 +124,7 @@
                 top:258px;
                 margin: 50px;
                 color:#fff;
-                background-color: #333;
+                background-color: #33454d;
             }
             .wrap{
             margin: 50px 300px 0 50px;
@@ -107,7 +137,7 @@
         .b2Top{
             display: block;
             position: fixed;
-             opacity:0;
+            opacity:0;
             background-image: url(../img/b2top.png) ;
             background-color: rgba(255,255,255,0.5);
             width:50px;
@@ -117,9 +147,11 @@
             background-repeat: no-repeat;
             background-size: 50% 50%;
             background-position: center;
+
         }
         .b2Top:hover{
             background-color: rgba(255,255,255,1);
+            box-shadow: 1px 1px 6px 0px #888;
         }
         .b2Top.show{
             opacity:1;
