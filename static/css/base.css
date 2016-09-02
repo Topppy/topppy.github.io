@@ -31,6 +31,7 @@
             display: block;
             margin-bottom: 10px;
             background-color: #fff;
+            box-shadow: 1px 1px 4px 1px #ddd;
             overflow: hidden;
         }
         .article:hover{
@@ -38,6 +39,8 @@
         }
         .article-item{
             padding: 20px;
+            box-shadow: 1px 1px 4px 1px #ddd;
+            background-color: #fff;
         }
         .article-item:hover{
         }
@@ -70,6 +73,7 @@
         }*/
         .sidebar{
             box-shadow: 1px 1px 6px 0px #888;
+            display: none;
         }
         .sidebar span{
             display: block;
@@ -108,34 +112,12 @@
             padding: 10px 30px;
             width:100%;
         }
-        @media only screen and (max-width: 768px) {
-            .wrap{
-            margin: 50px 50px 0 50px;
-            }
-            .b2Top,.sidebar{
-                display: none;
-            }
-        }
-        @media only screen and (min-width: 768px) {
-            .sidebar{
-                width:200px;
-                position: absolute;
-                right:0;
-                top:258px;
-                margin: 50px;
-                color:#fff;
-                background-color: #33454d;
-            }
-            .wrap{
-            margin: 50px 300px 0 50px;
-            }
-        }
         .sidebar.scroll{
             position: fixed;
             top:0px;
         }
         .b2Top{
-            display: block;
+            display: none;
             position: fixed;
             opacity:0;
             background-image: url(../img/b2top.png) ;
@@ -156,4 +138,32 @@
         .b2Top.show{
             opacity:1;
             transition: opacity 0.5s;
+        }
+        @media only screen and (min-width:420px ) and (max-width: 768px) {
+            .wrap{
+                margin: 50px 50px 0 50px;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .sidebar{
+                width:200px;
+                position: absolute;
+                right:0;
+                top:258px;
+                margin: 50px;
+                color:#fff;
+                background-color: #33454d;
+            }
+            .wrap{
+                margin: 50px 300px 0 50px;
+            }
+            .b2Top.show,.sidebar{
+                display: block;
+            }
+        }
+        @media only screen and (max-width: 420px) {
+            .wrap {
+                margin: 20px 10px 0 10px;
+            }
         }
