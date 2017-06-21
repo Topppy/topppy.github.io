@@ -5,13 +5,23 @@
         }
         a{
             text-decoration: none;
-            color:#222;
+            color:#DD2C00;
         }
         a:hover{
-            color:#33454d;
+            color:#EF6C00;
         }
         img{
             max-width: 100%;
+            display: block
+        }
+        h3 {
+            margin: 15px 0;
+        }
+        h4 {
+            margin: 10px 0;
+        }
+        p {
+          margin: 5px 0;
         }
         .header{
             background-color: #33454d;
@@ -33,25 +43,27 @@
             background-color: #fff;
             box-shadow: 1px 1px 4px 1px #ddd;
             overflow: hidden;
+            color: #222;
         }
         .article:hover{
             box-shadow: 1px 1px 6px 0px #888;
+            color:#33454d;
         }
         .article-item{
             padding: 20px;
             box-shadow: 1px 1px 4px 1px #ddd;
             background-color: #fff;
         }
-        .article-item:hover{
-        }
         .article-head{
             padding-bottom: 20px;
             border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
         .article-head h1{display: block}
         .article-head time{
-            margin-top: -23px;
-            float:right;
+          color:#ccc
         }
         .article-section h4 {padding:10px 0;}
         .article-item p{padding-top:10px ;} 
@@ -63,14 +75,6 @@
             margin-top: -20px;
             float:right;
         }
-/*        .sidebar{
-            width:200px;
-            position: absolute;
-            right:0;
-            top:258px;
-            margin: 50px;
-            background-color: #33454d;
-        }*/
         .sidebar{
             box-shadow: 1px 1px 6px 0px #888;
             display: none;
@@ -106,8 +110,6 @@
             -o-transition: width 0.1s,padding-left 0.1s;
             transition: width 0.1s,padding-left 0.1s;
         }
-        .sidebar a:hover{
-        }
         .sidebar a:hover:after{
             padding: 10px 30px;
             width:100%;
@@ -117,7 +119,8 @@
             top:0px;
         }
         .b2Top{
-            display: none;
+            display: block;
+            z-index: 1000;
             position: fixed;
             opacity:0;
             background-image: url(../img/b2top.png) ;
@@ -129,7 +132,7 @@
             background-repeat: no-repeat;
             background-size: 50% 50%;
             background-position: center;
-
+            transition: opacity 0.2s;
         }
         .b2Top:hover{
             background-color: rgba(255,255,255,1);
@@ -137,33 +140,34 @@
         }
         .b2Top.show{
             opacity:1;
-            transition: opacity 0.5s;
+            transition: opacity 0.2s;
         }
         @media only screen and (min-width:420px ) and (max-width: 768px) {
             .wrap{
                 margin: 50px 50px 0 50px;
             }
+            .b2Top {
+                right: 0;
+            }
         }
 
-        @media only screen and (min-width: 768px) {
+        @media only screen and (min-width: 769px) {
             .sidebar{
                 width:200px;
                 position: absolute;
                 right:0;
-                top:258px;
+                top:155px;
                 margin: 50px;
                 color:#fff;
                 background-color: #33454d;
-            }
-            .wrap{
-                margin: 50px 300px 0 50px;
-            }
-            .b2Top.show,.sidebar{
                 display: block;
             }
         }
         @media only screen and (max-width: 420px) {
             .wrap {
                 margin: 20px 10px 0 10px;
+            }
+            .b2Top.show {
+                display: none;
             }
         }

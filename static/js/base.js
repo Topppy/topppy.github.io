@@ -21,10 +21,10 @@ $(function () {
         scrollTop = $(window).scrollTop();
         var bShown = $b2Top.hasClass('show');
         var sideScrolled = $sidebar.hasClass('scroll');
-        if (scrollTop > 258) {
+        if (scrollTop > 155) {
             !bShown && $b2Top.addClass('show');
             !sideScrolled && $sidebar.addClass('scroll');
-        } else if (scrollTop <= 258) {
+        } else if (scrollTop <= 155) {
             bShown && $b2Top.removeClass('show');
             sideScrolled && $sidebar.removeClass('scroll');
         }
