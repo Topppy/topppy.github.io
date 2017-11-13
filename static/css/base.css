@@ -44,10 +44,12 @@
             box-shadow: 1px 1px 4px 1px #ddd;
             overflow: hidden;
             color: #222;
+            transition: 0.3s;
         }
         .article:hover{
             box-shadow: 1px 1px 6px 0px #888;
             color:#33454d;
+            transform: scale(1.01);
         }
         .article-item{
             padding: 20px;
@@ -89,30 +91,10 @@
             color:#fff;
             padding:10px 20px;
         }
-        .sidebar a:after{
-            position: absolute;
-            box-sizing: border-box;
-            top:0;
-            left:0;
-            height:100%;
-            width:0;
-            overflow: hidden;
-            word-break:keep-all;
-            white-space:nowrap;
-            padding: 10px 0px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            content: attr(data-title);;
-            background-color: #e87e6f;
-            -webkit-transition: width 0.1s,padding-left 0.1s;
-            -moz-transition: width 0.1s,padding-left 0.1s;
-            -ms-transition: width 0.1s,padding-left 0.1s;
-            -o-transition: width 0.1s,padding-left 0.1s;
-            transition: width 0.1s,padding-left 0.1s;
-        }
-        .sidebar a:hover:after{
-            padding: 10px 30px;
-            width:100%;
+ 
+        .sidebar a:hover{
+            background: #fff;
+            color: #33454d;
         }
         .sidebar.scroll{
             position: fixed;
