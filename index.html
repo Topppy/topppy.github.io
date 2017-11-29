@@ -33,7 +33,10 @@
           <time>{{article.time}}</time>
         </header>
         <section>
-          <p>{{article.desc}}</p>
+          {{set pList = article.desc.split('\n')}}
+          {{each pList}}
+            <p>{{$value}}</p>
+          {{/each}}
         </section>
         <footer class="article-footer">
           More...
