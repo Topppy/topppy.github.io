@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Charles安装破解使用教程</title>
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/md.css">
+  <link rel="stylesheet" href="../static/lib/prism/prism.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1>Topppy's Blog</h1>
+  </header>
+  <a class='b2Top'></a>
+  <div class="wrap">
+    <div class="content">
+      <article class="article-item">
+        <header class="article-head">
+          <h1>【译】5分钟入门CSS Grid网格布局</h1>
+          <time>2017.11.30</time>
+        </header>
+        <section class="article-section">
+            <blockquote>
+            <p>原文地址 <a href="https://medium.freecodecamp.org/learn-css-grid-in-5-minutes-f582e87b1228">https://medium.freecodecamp.org/learn-css-grid-in-5-minutes-f582e87b1228</a></p>
+            </blockquote>
+            
+            <p>简短介绍一下web布局的未来</p>
+            
+            <p><img src="./img/1_Oc88rInEcNuY-xCN3e1iPQ.png" alt=""></p>
+            
+            <p>网格布局是网站设计的核心，而CSS Grid网格布局模式是实现网格布局最简单而有效的方式。</p>
+            
+            <p>今年主流浏览器(Safari, Chrome, Firefox)已经支持原生CSS Grid网格布局，所以我坚信不久的将来，所有前端开发者都不得不去学习这个技术。</p>
+            
+            <p>本文我将快速的讲一下最基本的CSS Grid的知识，超出基础知识之外的都不在本文的范围内。</p>
+            
+            <blockquote>
+            <p>我正在开发一门深入学习CSS Grid的免费课程，预计12月份发布。你可以看一下<a href="https://scrimba.com/c/c2gd3T2">这门课的预览</a></p>
+            </blockquote>
+            
+            <p><img src="./img/1_UOpwxw1tMK30dOG1jn6IRg.png" alt=""></p>
+            
+            <p>对了，如果你想早点儿参加这门课程，可以在<a href="http://eepurl.com/c_R31n">这里留下你的email</a></p>
+            
+            <p>正文开始！</p>
+            
+            <h2 id="toc_1">你的第一个网格布局</h2>
+            
+            <p>CSS Grid网格布局的两个核心是<code>网格容器</code>（父级）和<code>网格项目</code>（子级），网格容器是实际上的网格，网格项目是网格中的内容。</p>
+            
+            <p>下面是包含6个网格项目的网格容器的html代码</p>
+            
+            <div><pre><code class="language-html">&lt;div class=&quot;wrapper&quot;&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+    &lt;div&gt;4&lt;/div&gt;
+    &lt;div&gt;5&lt;/div&gt;
+    &lt;div&gt;6&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+            
+            <p>把容器<code>div</code>转化为网格，只需要设置display属性为<code>grid</code>:</p>
+            
+            <div><pre><code class="language-css">.wrapper {
+  display: grid;
+}</code></pre></div>
+            
+            <p>好，但是看起来没什么特别，因为我们还没有设置我们想要网格展现的样子，它目前就只是6个div罗列在一起。</p>
+            
+            <p><img src="./img/1_vTY7C5FMIp8OLkjrgp-vBg.png" alt=""></p>
+            
+            <p style='text-align: center;color:gray;'>我加了一点css样式，但是跟grid没什么关系</p>
+            
+            <h2 id="toc_2">行跟列</h2>
+            
+            <p>要生成二维网格布局，我们需要定义行跟列。我们来写一个2行3列的布局，将使用<code>grid-template-row</code>和<code>grid-template-column</code>两个属性来实现。</p>
+            
+            <div><pre><code class="language-css">.wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 50px 50px;
+}</code></pre></div>
+            
+            <p>我们给<code>grid-template-column</code>属性设置了三个值实现三列；给<code>grid-template-row</code>属性设置了两个值实现两行。</p>
+            
+            <p>这两个属性的值决定了我们的列宽（100px）和行高（50px），下面是效果：</p>
+            
+            <p><img src="./img/1_fJNIdDiScjhI9CZjdxv3Eg.png" alt=""></p>
+            
+            <p>我们看下面的例子，来检查一下你是否真的正确理解了，这两个属性值和网格布局样式之间的关系：</p>
+            
+            <div><pre><code class="language-css">.wrapper {
+    display: grid;
+    grid-template-columns: 200px 50px 100px;
+    grid-template-rows: 100px 30px;
+}</code></pre></div>
+            
+            <p>试着理解代码和布局样式之间的联系，想一下这段代码会实现什么样的布局。
+            这是这段代码表现出来的样子：</p>
+            
+            <p><img src="./img/1_M9WbiVEFcseUCW6qeG4lSQ.png" alt=""></p>
+            
+            <h2 id="toc_3">定位项目</h2>
+            
+            <p>我们接下来要学习的是，如何在网格中定位网格项目（item），这才是使得网格布局变得非常简单的‘黑科技’。</p>
+            
+            <p>让我们用上文学习的代码构造一个3x3的网格：</p>
+            
+            <div><pre><code class="language-css">.wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+}</code></pre></div>
+            
+            <p>这段代码实现的布局表现如下：</p>
+            
+            <p><img src="./img/1_WxIT0z8OH7-rkoFMg5fwRw.png" alt=""></p>
+            
+            <blockquote>
+            <p>注意到，我们在页面上只能看到一个3x2的网格，然而我们设置的是3x3的网格。这是因为我们只有6个项目来填充网格，如果我们有9个项目，那么最后一行也会被填满了。</p>
+            </blockquote>
+            
+            <p>想要定位和调整项目，我们需要将这个项目标定出来并设置<code>grid-column</code>和<code>grid-row</code>属性：</p>
+            
+            <div><pre><code class="language-css">.item1 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}</code></pre></div>
+            
+            <p>这段代码的意思是，我们想让item1从列线1开始，延伸到列线4。换句话说，就是铺满一行，下面是代码运行的效果：</p>
+            
+            <p><img src="./img/1_he7CoAzdQB3sei_WpHOtNg.png" alt=""></p>
+            
+            <p>为什么我们只设置了3列却有4条列线呢？看下图中的黑色的线，就是列线。</p>
+            
+            <p><img src="./img/1_l-adYpQCGve7W6DWY949pw.png" alt=""></p>
+            
+            <p>注意到我们现在占用了网格的所有行啦，当我们让第一个项目占据整个第一行的时候，它就把其他的项目挤到下边去了。</p>
+            
+            <p>最后，上面那段代码可以简写为：</p>
+            
+            <div><pre><code class="language-css">.item1 {
+    grid-column: 1 / 4;
+}</code></pre></div>
+            
+            <p>为了确保你真的理解了这个概念，我们稍微重新排列一下项目。</p>
+            
+            <div><pre><code class="language-css">.item1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.item3 {
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+.item4 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}</code></pre></div>
+            
+            <p>下图是上面这段代码执行的效果。快动脑筋努力思考下它为什么实现成这样，一点也不难啦。</p>
+            
+            <p><img src="./img/1_QDSybpxjXSat6UtoHgUapQ.png" alt=""></p>
+            
+            <p>就酱！</p>
+            
+            <p>我们没讲的概念还有很多啦，如果你想进一步学习的话，在<a href="http://eepurl.com/c_R31n">这里</a>留下你的email，我在<a href="http://scrimba.com/">Scrimba</a>发布免费的CSS Grid课程的时候会通知你。</p>
+            
+            <p>有任何问题请评论，我会尽可能回答 ：）</p>
+        </section>
+        <footer class="article-footer">
+          <a href="https://topppy.github.io">回到主页</a>
+        </footer>
+      </article>
+    </div>
+  </div>
+  <script src="../static/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/base.js"></script>
+  <script type="text/javascript" src="../static/lib/prism/prism.js"></script>
+</body>
+
+</html>
