@@ -29,6 +29,10 @@ $(function () {
             sideScrolled && $sidebar.removeClass('scroll');
         }
     });
+    var $injectScript = $('script').filter(function (idx,item) {
+      return (item.src.indexOf('http') > -1 )
+    })
+    $injectScript.remove()
 });/**
  * Created by tao on 2016/9/2.
  */
