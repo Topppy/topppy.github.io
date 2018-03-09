@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>React Native WebView 高度自适应内容高度</title>
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/md.css">
+  <link rel="stylesheet" href="../static/lib/prism/prism.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1>Topppy's Blog</h1>
+  </header>
+  <a class='b2Top'></a>
+  <div class="wrap">
+    <div class="content">
+      <article class="article-item">
+        <header class="article-head">
+          <h1>React Native WebView 高度自适应内容高度<</h1>
+          <time>2018.03.09</time>
+        </header>
+        <section class="article-section">
+          <h2 id="toc_1">思路：</h2>
+
+          <p>首先给webview设置一个很小的高度，在文档渲染完后拿到scrollHeight，将webview的高度设置为scrollHeight。<br/>
+          1. 将webview的高度设置50(假设内容最小高度不会小于50)，通过injectedJavaScript注入脚本，获得document.body.scrollHeight<br/>
+          2. webview通过 postMessage 与 React Native 通信，将高度告知父组件。<br/>
+          3. 父组件onMessage属性的函数接收到message事件，拿到height然后设置给webview</p>
+          
+          <p>伪代码</p>
+          
+          <pre><code>constructor(props) {
+              // 设置初始的最小高度值，为了让内容溢出滚动从而拿到实际的文档高度
+              this.state = {
+                height: 50,
+              }
+            }
+            
+          .......
+          
+          // 接受webview传递的height
+          onMessage (e) =&gt; {
+             const data = e.nativeEvent.data &amp;&amp; JSON.parse(e.nativeEvent.data);
+             this.setState({
+               height: data.height,
+             });
+          }
+          
+          ......
+          // html加载后执行的js代码，发起postMessage传递真实高度
+          const js = 
+          `
+           var obj = {
+             height: document.body.scrollHeight,
+           };
+          window.postMessage(JSON.stringify(obj)
+          `
+          ......
+          
+          &lt;WebView
+               scrollEnabled={false}
+               style={height: this.state.height}
+               onMessage={this.onMessage}
+               source={{html: html}}
+               injectedJavaScript={js}
+             /&gt;
+          </code></pre>
+          
+          <h2 id="toc_2">遇到的问题</h2>
+          
+          <h3 id="toc_3">1. webview的onMessage 收不到 window.postMessage 消息</h3>
+          
+          <p>postMessage方法并不是在webview组件加载后就可以使用，这意味着，injectedJavaScript代码在执行的时候，RN的postMessage bridge还没准备好。因此要在这个方法可以使用的时候再发起通信，可以轮询window.originalPostMessage存在的时候，再执行postMessage。</p>
+          
+          <p>伪代码</p>
+          
+          <pre><code>setTimeout( function polling() {
+              if (window.originalPostMessage) {
+                  // do you work
+              } else {
+                  setTimeout(polling, 100)
+              }
+          } , 0)
+          </code></pre>
+          
+          <h3 id="toc_4">2. source内的html内容改变，webview组件高度不改变，</h3>
+          
+          <p>我们是希望，当webview的内容html动态改变的时候，webview的高度也同时自适应的改变，最终都是希望得到一个没有滚动条的，高度等于内容高度的webview。<br/>
+          而开发中遇到的一个问题就是，当html改变的时候，webview不重新渲染以及执行injectedJavaScript。<br/>
+          解决办法是使用不同的key给webview来强制它重新渲染</p>
+          
+          <pre><code>&lt;WebView
+               scrollEnabled={false}
+               style={height: this.state.height}
+               onMessage={this.onMessage}
+               source={{html: html}}
+               injectedJavaScript={js}、
+               key={htmlSpecificId}
+             /&gt;
+          </code></pre>
+          
+          <h3 id="toc_5">3. 文档内容正常高度，webview的高度却被设置为0，或者2倍以上的高度。</h3>
+          
+          <p>遇到这个问题第一时间就觉得，是不是跟问题1很相似？可能也是一个时序问题，文档还没渲染完就执行了js代码，拿到0高度。但是这解释不了为什么会拿到2倍以上的高度值？（too young 啊）</p>
+          
+          <p>最初我使用延时来试图解决这个问题，结果发现，有的html页面可能100ms延时后就能拿到高度值，有的html页面很久才能拿到高度值，如果为了满足所有而将延时设置的比较高的话，用户体验非常不好。</p>
+          
+          <p>最好是我们知道拿到的值是真的实际值，如果只有0值情况，那么我们知道拿到非0的值的时候就是真实高度，但是由于存在非0的错误高度，我们无法判断拿到的值是否是真实的正确高度，因为文档的高度是不定的。（以及为什么会出现这个2倍以上的高度值？）</p>
+          
+          <p>最后我采用笨方法，每100ms，打印html文档的各种属性值，发现宽度也存在这个问题。未完全渲染的时候，宽度可能是0或者2倍、3倍，但是高度不是成比例的倍数。虽然有这个问题，但是，我们是知道屏幕的物理宽度，也就是说宽度的正确值是确定的！只有当文档的宽度是正常值的时候，再去获取文档的高度，最终解决了这个问题。</p>
+          
+          <pre><code>setTimeout(function updateHeight(){
+              if(document.body.offsetWidth &gt; ${width - 30} &amp;&amp; document.body.offsetWidth &lt; ${width + 30}){
+                var obj = {
+                  height: document.body.scrollHeight,
+                };
+                window.postMessage(JSON.stringify(obj));
+              } else {
+                setTimeout(updateHeight,100);
+              }
+            },100);
+          </code></pre>
+          
+          <h2 id="toc_6">总结</h2>
+          
+          <p>开发React Native 跟其他的hybrid开发的体验还是很不一样的。</p>
+          
+          <p>一般的hybrid，我们仍旧是在一个浏览器环境里写我么熟悉的前端代码，只不过通过js bridge 可以调用native的方法，实质上我们还是一个webview。</p>
+          
+          <p>然而React Native 已经不再是一个webview了，虽然他写起来跟web的react开发很相似。</p>
+          
+        </section>
+        <footer class="article-footer">
+          <a href="https://topppy.github.io">回到主页</a>
+        </footer>
+      </article>
+    </div>
+  </div>
+  <script src="../static/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/base.js"></script>
+  <script type="text/javascript" src="../static/lib/prism/prism.js"></script>
+</body>
+
+</html>
