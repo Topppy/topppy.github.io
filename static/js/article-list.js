@@ -1,6 +1,11 @@
 var DATA = {
   list: [
     {
+      name: 'React Native pull Down 和pull Up动画踩坑记',
+      time: '2018.03.19',
+      desc: 'React Native 的 android zIndex 的坑和 animation 值为0动画消失的坑。'
+    },
+    {
       name: 'React Native WebView 高度自适应内容高度',
       time: '2018.03.09',
       desc: '思路：\n首先给webview设置一个很小的高度，在文档渲染完后拿到scrollHeight，将webview的高度设置为scrollHeight。'
