@@ -1,0 +1,42 @@
+Arguments: 
+  /Users/mac/.nvm/versions/node/v8.9.4/bin/node /Users/mac/.nvm/versions/node/v8.9.4/bin/yarn build
+
+PATH: 
+  /Users/mac/Library/Android/sdk/tools:/Users/mac/Library/Android/sdk/platform-tools:/usr/local/share/npm/bin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mac/.nvm/versions/node/v8.9.4/bin:/Users/mac/Library/Android/sdk/tools:/Users/mac/Library/Android/sdk/platform-tools:/usr/local/share/npm/bin/:/user/local/lib/node:/user/local/bin/npm:/user/local/bin/node-waf:/usr/local/share/npm/bin/:/user/local/lib/node:/user/local/bin/npm:/user/local/bin/node-waf
+
+Yarn version: 
+  1.3.2
+
+Node version: 
+  8.9.4
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "topppy.blog",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+      "build": "node tools/build",
+    },
+    "dependencies": {
+      "cheerio": "^1.0.0-rc.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  SyntaxError: /Users/mac/my/myGithub/topppy.github.io/package.json: Unexpected token } in JSON at position 118
+      at JSON.parse (<anonymous>)
+      at /Users/mac/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:770:59
+      at Generator.next (<anonymous>)
+      at step (/Users/mac/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:92:30)
+      at /Users/mac/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:103:13
+      at <anonymous>

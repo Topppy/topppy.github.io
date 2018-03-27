@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>js 判断数组是否包含目标值，使用了 in 操作符 （窝自己的理解误区）</title>
+  <link rel="stylesheet" href="../static/css/base.css">
+  <link rel="stylesheet" href="../static/css/md.css">
+  <link rel="stylesheet" href="../static/lib/prism/prism.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1>Topppy's Blog</h1>
+  </header>
+  <a class='b2Top'></a>
+  <div class="wrap">
+    <div class="content">
+      <article class="article-item">
+        <header class="article-head">
+          <h1>js 判断数组是否包含目标值，使用了 in 操作符 （窝自己的理解误区）</h1>
+          <time>2018.03.27</time>
+        </header>
+        <section class="article-section">
+
+          <p class="desc">一般，我们会使用indexOf,就像下面这样</p>
+
+          <pre><code>console.log( [1,2,6,7].indexOf(6) &gt; -1)    
+// true
+</code></pre>
+
+          <p>据说还可以使用in操作符，于是试了一下</p>
+
+          <pre><code>console.log(  1 in [1,2,6,7])    
+// true
+console.log(  2 in [1,2,6,7])    
+// true
+          </code></pre>
+
+          <p>嗯感觉没问题。。。然后就悲剧了</p>
+
+          <pre><code>console.log(  6 in [1,2,6,7])    
+// false
+console.log(  7 in [1,2,6,7])    
+// false
+          </code></pre>
+
+          <p>赶紧查文档
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in">mdn</a>
+          </p>
+
+          <p>in 操作符实际上检测的是 prop in object，也就是说，在对数组使用in的时候，检测的是key是index。。。。而不是对应的value。所以对于长度为4的数组[1,2,6,7]，0、1、2、3 都返回 true，
+            大于3的都是false。</p>
+
+          <p>那么还有别的方法吗？ES6 的arr.includes()</p>
+
+          <pre><code>[1,2,6,7].includes(6)
+// true
+          </code></pre>
+
+        </section>
+        <footer class="article-footer">
+          <a href="https://topppy.github.io">回到主页</a>
+        </footer>
+      </article>
+    </div>
+  </div>
+  <script src="../static/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/base.js"></script>
+  <script type="text/javascript" src="../static/lib/prism/prism.js"></script>
+</body>
+
+</html>

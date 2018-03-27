@@ -1,0 +1,11 @@
+{
+  "name": "topppy.blog",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2"
+  }
+}

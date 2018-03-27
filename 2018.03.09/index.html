@@ -26,7 +26,7 @@
         <section class="article-section">
           <h2 id="toc_1">思路：</h2>
 
-          <p>首先给webview设置一个很小的高度，在文档渲染完后拿到scrollHeight，将webview的高度设置为scrollHeight。<br/>
+          <p class="desc" >首先给webview设置一个很小的高度，在文档渲染完后拿到scrollHeight，将webview的高度设置为scrollHeight。<br/>
           1. 将webview的高度设置50(假设内容最小高度不会小于50)，通过injectedJavaScript注入脚本，获得document.body.scrollHeight<br/>
           2. webview通过 postMessage 与 React Native 通信，将高度告知父组件。<br/>
           3. 父组件onMessage属性的函数接收到message事件，拿到height然后设置给webview</p>
